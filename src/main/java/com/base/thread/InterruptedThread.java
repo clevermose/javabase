@@ -29,13 +29,14 @@ class Thread1 implements Runnable {
 			
 			System.out.println(count++);
 			
+			//在多线程编程时,记住要响应interrupted
 			if(Thread.interrupted()) {
 				System.out.println("Fuck ,be interrupted.");
 				break;
 			}
 			
 			/*
-			//如果在这边进行睡眠,则中断状态将被清除(Thread.interrupted()不再为true),也就是说不会break出去,但是它还是会受到一个InterruptedException
+			//如果在这边进行睡眠,则中断状态将被清除(Thread.interrupted()不再为true),也就是说不会break出去,但是它还是会收到一个InterruptedException
 			//很多方式会清除状态,可看API文档
 			try {
 				Thread.currentThread().sleep(1000l);
